@@ -8,8 +8,8 @@ on:
    
 env:
   # Change these values if you have forked it for your own works
-  GitHubMail: "adameyyad999@gmail.com"
-  GitHubName: "nnippon" 
+  GitHubMail: "81898439+tazz555@users.noreply.github.com"
+  GitHubName: "tazz555" 
 
 jobs:
   build:
@@ -37,14 +37,14 @@ jobs:
         run: |
           cd source || exit 1
           docker container prune --force || true
-          docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t mirror-bot
+          docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t bot
           docker image ls
 
       - name: running Docker
         timeout-minutes: 340
         continue-on-error: true
         run: |
-          docker run --privileged --rm -i mirror-bot
+          docker run --privileged --rm -i bot
 
       - name: Loop Workflow
         continue-on-error: true
