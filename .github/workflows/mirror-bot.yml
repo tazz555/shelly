@@ -35,16 +35,10 @@ jobs:
 
       - name: Compile The Mirroring Docker Container
         run: |
-          cd source || exit 1
-          docker container prune --force || true
-          docker build . --rm --force-rm --compress --no-cache=true --pull --file Dockerfile -t bot
-          docker image ls
-
-      - name: running Docker
-        timeout-minutes: 340
-        continue-on-error: true
-        run: |
-          docker run --privileged --rm -i bot
+          cd source
+          sudo apt install -y make python build-essential
+          yarn
+          node server
 
       - name: Loop Workflow
         continue-on-error: true
